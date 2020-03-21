@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="CB">
+    <br>
+    <ion-title style="text-align: left !important; font-size: 12px;" color="medium">COVID-19 Tracker</ion-title>
+    <ion-title style="text-align: left !important; font-size: 25px;" color="light">Philippines</ion-title><br>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div style="text-align: center;">
+            <ion-text color="primary">● </ion-text>
+            <ion-text class="normText" color="light"><b>Confirmed</b></ion-text> <br>
+            <ion-text color="primary"> {{cCases}}</ion-text>
+          </div>
+
+        </ion-col>
+        <ion-col>
+          <div style="text-align: center;">
+            <ion-text color="danger">● </ion-text>
+            <ion-text class="normText" color="light"><b>Deaths</b></ion-text> <br>
+            <ion-text color="danger"> {{cDeaths}}</ion-text>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div style="text-align: center;">
+            <ion-text color="success">● </ion-text>
+            <ion-text class="normText" color="light"><b>Recovered</b></ion-text> <br>
+            <ion-text color="success"> {{cRecovered}} </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div style="text-align: center; font-size: 15px;">
+            <ion-text color="light">As of     </ion-text> 
+            <ion-text color="tertiary"> {{(cDate).replace('"', ' ').replace('"', ' ')}}</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="mainDIV">
+
+            <ion-text color="light">
+              <h3>Historical Data</h3>
+            </ion-text>
+          </div>
+         
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+<div>
+  <ion-list>
+    <ion-item *ngFor="let item of items?.Philippines; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-text color="light">{{item?.date}} </ion-text>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div style="text-align: left;" class ="normText">
+              <ion-text color="primary">● </ion-text>
+              <ion-text color="light">Confirmed<br></ion-text>
+              <ion-text color="danger">● </ion-text>
+              <ion-text color="light">Deaths<br></ion-text>
+              <ion-text color="success">● </ion-text>
+              <ion-text color="light">Recovered<br></ion-text>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div style="text-align: center;">
+              <ion-text color="primary">{{item?.confirmed}}<br></ion-text>
+              <ion-text color="danger">{{item?.deaths}}<br></ion-text>
+              <ion-text color="success">{{item?.recovered}}<br></ion-text>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</div>
+
+  <div style="text-align: center;">
+    <ion-button style="font-size: 12px;" (click)="pushData(update?.deaths,update?.confirmed,update?.recovered,update?.date)" size="small">Refresh</ion-button>
+  </div>
+
+<div style="font-size: 10px; text-align: center;">
+  <br>
+  <br>
+  <br>
+  <ion-text  color = "medium">Developed by Josh Lintag</ion-text>
+</div>
+
+
+
+</ion-content>

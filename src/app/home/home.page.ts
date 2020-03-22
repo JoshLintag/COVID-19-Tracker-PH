@@ -28,6 +28,8 @@ export class HomePage {
   public firstConfirmed: any;
   public firstDeath: any;
   public firstRecovered: any;
+  public firstCheck: boolean = true;
+
 
   constructor(public navCtrl: NavController, public http: HttpClient, public platform: Platform) {
     this.loadData();
@@ -47,6 +49,7 @@ export class HomePage {
     console.log();
   }
 
+  
   loadData() {
 
     let data: Observable<any>;
@@ -72,19 +75,34 @@ export class HomePage {
 
       this.update = this.jlen[this.jlen.length - 1];
 
-      this.pushData(this.firstDeath, this.firstConfirmed, this.firstRecovered, this.firstDate);
+      if(this.firstCheck==true){
+        this.pushData(this.firstDeath, this.firstConfirmed, this.firstRecovered, this.firstDate);
+        this.firstCheck = false;
+      }
+      else{
+        console.log("first check is done hehe");
+      }
+
+
+
     })
 
 
   }
-
+  dateString:any;
   pushData(cDeaths: string, cCases: string, cRecovered: string, cDate: string) {
     this.cDeaths = cDeaths;
     this.cCases = cCases;
     this.cRecovered = cRecovered;
-    this.cDate = " " + cDate;
+
+    this.dateString = cDate.replace(/['"]+/g, '');
+
+    this.cDate = " " + this.dateString;
     console.log(cDeaths);
     this.loadData();
+
+    
+
   }
 
 }
